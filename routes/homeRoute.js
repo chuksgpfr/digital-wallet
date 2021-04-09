@@ -34,12 +34,34 @@ router.post('/signup', async (req, res) => {
                 'string.base': `firstname should be a type of 'text'`,
                 'string.empty': `firstname cannot be empty`,
                 'string.min': `firstname should have a minimum length of {#limit}`,
+                'string.max': `firstname should have a maximum length of {#limit}`,
                 'any.required': `firstname is required`
             }),
-            username: Joi.string().trim().lowercase().min(3).max(20).required(),
-            email: Joi.string().trim().email({ minDomainSegments: 2 }).required(),
-            mobile: Joi.string().length(11).pattern(new RegExp(/^\d+$/)).required(),
-            password: Joi.string().min(8).pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required()
+            username: Joi.string().trim().lowercase().min(3).max(20).required().messages({
+                'string.base': `username should be a type of 'text'`,
+                'string.empty': `username cannot be empty`,
+                'string.min': `username should have a minimum length of {#limit}`,
+                'string.max': `username should have a maximum length of {#limit}`,
+                'any.required': `username is required`
+            }),
+            email: Joi.string().trim().email({ minDomainSegments: 2 }).required().messages({
+                'string.base': `email should be a type of 'text'`,
+                'string.empty': `email cannot be empty`,
+                'string.email': `this is not a valid email`,
+                'any.required': `email is required`
+            }),
+            mobile: Joi.string().length(11).pattern(new RegExp(/^\d+$/)).required().messages({
+                'string.base': `mobile number should be a type of 'text'`,
+                'string.empty': `mobile number cannot be empty`,
+                'string.pattern': `this is not a valid mobile number`,
+                'any.required': `mobile number is required`
+            }),
+            password: Joi.string().min(8).pattern(new RegExp('^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$')).required().messages({
+                'string.base': `password should be a type of 'text'`,
+                'string.empty': `password cannot be empty`,
+                'string.pattern': `this is not a valid password, password must be minimum eight characters, at least one letter and one number`,
+                'any.required': `mobile number is required`
+            })
         })
 
         //not using async because catch block will catch error and cannot distinguish between validation error and server error.
