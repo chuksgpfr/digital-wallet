@@ -19,4 +19,4 @@ This is a simple digital wallet API
 - Redis was used to cache jwt token, so as to manage user sessions
   - Use case for when a user logs out and generates another token by logging in, the old token is deleted from the redis cache making it invalid
 - in a production enviroment, queue would have being implemented
-- in a production enviroment, webhook will filter IP address
+- in a production enviroment, webhook will filter IP address.
