@@ -9,6 +9,7 @@ const CardTransaction = require("../models/CardTransaction");
 const { User } = require("../models/User");
 const { verifyAccountNumber, createTransferRecipent, initiateTransfer } = require("../services/withdraw");
 const Withdraw = require("../models/Withdraw");
+const Account = require("../models/Account");
 
 
 const router = express.Router();
@@ -254,6 +255,15 @@ router.post('/withdraw',async(req, res)=>{
 
         if(typeof user === "undefined"){
             return res.status(400).send({success:false, errors:["User does not exist"]});
+        }
+
+        let account = await Account.query().findOne('user','=',req.user);
+        if(typeof account === "undefined"){
+            return res.status(400).send({success:false, errors:["Account does not exist"]});
+        }
+
+        if(account.balance < value.amount){
+            return res.status(400).send({success:false, errors:["Insufficient fund "]});
         }
 
         //verify account number
