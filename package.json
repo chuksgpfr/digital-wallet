@@ -1,0 +1,33 @@
+{
+    "name": "interview",
+    "version": "1.0.0",
+    "description": "This is a wallet app built for an interview (backend dev abeg app)",
+    "main": "app.js",
+    "repository": "https://github.com/chuksgpfr/digital-wallet.git",
+    "author": "ChuksGPFR",
+    "license": "ISC",
+    "scripts": {
+        "start": "node app.js",
+        "start:dev": "nodemon app.js",
+        "migrate:make": "./node_modules/.bin/knex migrate:make",
+        "migrate:latest": "./node_modules/.bin/knex migrate:latest",
+        "migrate:down": "./node_modules/.bin/knex migrate:down"
+    },
+    "dependencies": {
+        "axios": "^0.21.1",
+        "bcrypt": "^5.0.1",
+        "body-parser": "^1.19.0",
+        "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "joi": "^17.4.0",
+        "jsonwebtoken": "^8.5.1",
+        "knex": "^0.95.4",
+        "mysql": "^2.18.1",
+        "mysql-migrations": "^1.0.7",
+        "nodemon": "^2.0.7",
+        "objection": "^2.2.15",
+        "redis": "^3.1.0",
+        "uuid": "^8.3.2"
+    }
+}
