@@ -1,7 +1,7 @@
 # digital-wallet
 This is a simple digital wallet API
 
-> Base URL is: https://abeg-interview.herokuapp.com
+> Base URL is: Lol upload it yourself
 
 >## ✨ Use cases covered
 
